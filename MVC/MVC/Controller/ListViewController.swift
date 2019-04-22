@@ -34,6 +34,13 @@ class ListViewController: UITableViewController {
         return results.count
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        detailVC.result = results[indexPath.row]
+        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ListCell

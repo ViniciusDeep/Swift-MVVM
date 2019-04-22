@@ -49,8 +49,6 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
                     print("Error in search", error)
                     return
                 }
-                
-                
                 self.results = res
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -63,12 +61,34 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
         return results.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ListCell
-        cell.result = results[indexPath.row]
-        return cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let redView = UIView()
+        redView.backgroundColor = .red
+        view.addSubview(redView)
+        redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveView)))
+        guard let cell = tableView.cellForRow(at: indexPath) else {return}
+        guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else {return}
+        redView.frame = startingFrame
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            redView.frame = self.view.frame
+        }, completion: (nil))
     }
     
+    @objc func handleRemoveView(gesture: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+             gesture.view?.removeFromSuperview()
+        }, completion: (nil))
+        
+       
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ListCell
+        let result = results[indexPath.row]
+        cell.result = result
+        return cell
+    }
     
     fileprivate func verifyResultsInCell() {
         if results.count == 0 {
