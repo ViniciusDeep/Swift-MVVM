@@ -7,6 +7,7 @@ target 'MVC' do
 
   # Pods for MVC
    pod 'SDWebImage', '~> 5.0'
+   pod 'SwiftLint'
   target 'MVCTests' do
     inherit! :search_paths
     # Pods for testing
