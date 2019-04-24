@@ -9,14 +9,11 @@
 import UIKit
 
 class ListViewController: UITableViewController {
-    
-    
     let cellId: String = "cellId"
     override func viewDidLoad() {
         tableView.register(ListCell.self, forCellReuseIdentifier: cellId)
         fetchArtist()
     }
-    
     fileprivate var results = [Result]()
     fileprivate func fetchArtist() {
         Service.shared.fetchArtist(searchTerm: "Eminem") { (res, err) in
@@ -36,12 +33,11 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
-        detailVC.result = results[indexPath.row]
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
+            detailVC.result = self.results[indexPath.row]
+            self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        }, completion: (nil))
     }
-    
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ListCell
         cell.result = results[indexPath.row]

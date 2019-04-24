@@ -8,22 +8,24 @@
 
 import UIKit
 
-
 class SearchListController: UITableViewController, UISearchBarDelegate {
-    
+    fileprivate var results = [Result]()
+    fileprivate var timer: Timer?
     fileprivate let cellId = "searchId"
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate lazy var enterSearchName: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Enter with name of your favorite Artist"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
-    
     override func viewDidLoad() {
         tableView.register(ListCell.self, forCellReuseIdentifier: cellId)
         setupSearchBar()
         verifyResultsInCell()
+        tableView.addSubview(enterSearchName)
+        enterSearchName.fillSuperview(padding: .init(top: 100, left: 50, bottom: 0, right: 50))
     }
     fileprivate func setupSearchBar() {
         searchController.searchBar.delegate = self
@@ -32,18 +34,13 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
         navigationItem.searchController = searchController
         searchController.dimsBackgroundDuringPresentation = false
     }
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         fetchAristWithSearch(searchText)
     }
-    fileprivate var results = [Result]()
-    
-    fileprivate var timer: Timer?
+   
     fileprivate func fetchAristWithSearch(_ text: String) {
         timer?.invalidate()
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false, block: { (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { (_) in
             Service.shared.fetchArtist(searchTerm: text) { (res, err) in
                 if let error = err {
                     print("Error in search", error)
@@ -58,6 +55,7 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         verifyResultsInCell()
+        enterSearchName.isHidden = results.count != 0
         return results.count
     }
     
@@ -69,7 +67,6 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else {return}
         guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else {return}
         redView.frame = startingFrame
-        
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             redView.frame = self.view.frame
         }, completion: (nil))
@@ -79,8 +76,6 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
              gesture.view?.removeFromSuperview()
         }, completion: (nil))
-        
-       
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,12 +86,15 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
     }
     
     fileprivate func verifyResultsInCell() {
-        if results.count == 0 {
+        if results.isEmpty {
             self.tableView.separatorStyle = .none
         } else {
             self.tableView.separatorStyle = .singleLine
+            enterSearchName.isHidden = true
         }
     }
+    
+    
     
     
 }

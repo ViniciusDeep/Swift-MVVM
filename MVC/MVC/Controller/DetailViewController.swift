@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
         detailView.artistName.text = "Vinicius"
         detailView.trackPrice.text = "0.0"
         detailView.imageTrack.image = UIImage(named: "search")
-        detailView.primaryGenreName.text = "Gay"
+        detailView.primaryGenreName.text = "Genero"
         setConstraints(detailView)
         view.addSubview(detailView)
     }

@@ -17,13 +17,11 @@ class ListCell: UITableViewCell {
             imageTrack.sd_setImage(with: URL(string: result.artworkUrl100))
         }
     }
-    
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     lazy var imageTrack: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -33,25 +31,19 @@ class ListCell: UITableViewCell {
         iv.clipsToBounds = true
         return iv
     }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpComponentsInCell()
     }
-    
-    
     fileprivate func setUpComponentsInCell() {
         addSubview(nameLabel)
         addSubview(imageTrack)
         setConstraintsInLabel()
     }
-    
     fileprivate func setConstraintsInLabel() {
         imageTrack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: imageTrack.leadingAnchor, multiplier: 7).isActive = true
-        
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

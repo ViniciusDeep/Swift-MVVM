@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class DetailView: UIView {
    lazy var artistName: UILabel = {
         let label = UILabel()
@@ -63,12 +61,8 @@ class DetailView: UIView {
     
     fileprivate func setConstraints() {
         artistName.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
-        
-        
         imageTrack.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         imageTrack.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        
-        
     }
 }
 
