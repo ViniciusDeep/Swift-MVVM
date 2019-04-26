@@ -9,7 +9,6 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setComponentsInTab()
@@ -29,6 +28,4 @@ class CustomTabBarController: UITabBarController {
         navVC.tabBarItem.image = UIImage(named: imageName)
         return navVC
     }
-    
-    
 }

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8863169A10F5059B8831E678 /* Pods_MVCUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9F1F00972E9CC99F8545CC /* Pods_MVCUITests.framework */; };
+		9202DC6F227252B200EAEDB4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9202DC6E227252B200EAEDB4 /* Result.swift */; };
 		928E0E9B226CE674005E56B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E0E9A226CE674005E56B5 /* AppDelegate.swift */; };
-		928E0E9D226CE674005E56B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E0E9C226CE674005E56B5 /* ViewController.swift */; };
 		928E0EA2226CE675005E56B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 928E0EA1226CE675005E56B5 /* Assets.xcassets */; };
 		928E0EA5226CE675005E56B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 928E0EA3226CE675005E56B5 /* LaunchScreen.storyboard */; };
 		928E0EB0226CE675005E56B5 /* MVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E0EAF226CE675005E56B5 /* MVCTests.swift */; };
@@ -51,9 +51,9 @@
 		4407790DEA7949E733F77E45 /* Pods-MVC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVC.release.xcconfig"; path = "Target Support Files/Pods-MVC/Pods-MVC.release.xcconfig"; sourceTree = "<group>"; };
 		5C6366163BDA2274F5F9FE83 /* Pods_MVC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F04FFDEAF74ADE103CBA177 /* Pods-MVCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVCUITests.debug.xcconfig"; path = "Target Support Files/Pods-MVCUITests/Pods-MVCUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9202DC6E227252B200EAEDB4 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		928E0E97226CE674005E56B5 /* MVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		928E0E9A226CE674005E56B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		928E0E9C226CE674005E56B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		928E0EA1226CE675005E56B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		928E0EA4226CE675005E56B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		928E0EA6226CE675005E56B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,7 +115,6 @@
 				6F04FFDEAF74ADE103CBA177 /* Pods-MVCUITests.debug.xcconfig */,
 				AF345B372D468783499AC5E3 /* Pods-MVCUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -150,7 +149,6 @@
 				928E0EC9226CE6A9005E56B5 /* Controller */,
 				928E0EC8226CE6A1005E56B5 /* View */,
 				928E0E9A226CE674005E56B5 /* AppDelegate.swift */,
-				928E0E9C226CE674005E56B5 /* ViewController.swift */,
 				928E0EA1226CE675005E56B5 /* Assets.xcassets */,
 				928E0EA3226CE675005E56B5 /* LaunchScreen.storyboard */,
 				928E0EA6226CE675005E56B5 /* Info.plist */,
@@ -200,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				928E0ECE226CE6F2005E56B5 /* SearchResult.swift */,
+				9202DC6E227252B200EAEDB4 /* Result.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,6 +236,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 928E0EBF226CE675005E56B5 /* Build configuration list for PBXNativeTarget "MVC" */;
 			buildPhases = (
+				9280F19E22713C5C0071D341 /* SwiftLint */,
 				C2874536F65F9C9EBE1F4C63 /* [CP] Check Pods Manifest.lock */,
 				928E0E93226CE674005E56B5 /* Sources */,
 				928E0E94226CE674005E56B5 /* Frameworks */,
@@ -404,6 +404,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9280F19E22713C5C0071D341 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		A0AD0E9869B237C713657BAA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,7 +474,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				928E0ED9226CEAA8005E56B5 /* DetailViewController.swift in Sources */,
-				928E0E9D226CE674005E56B5 /* ViewController.swift in Sources */,
 				928E0ED5226CE754005E56B5 /* SearchListController.swift in Sources */,
 				928E0EDB226CEAED005E56B5 /* DetailView.swift in Sources */,
 				928E0E9B226CE674005E56B5 /* AppDelegate.swift in Sources */,
@@ -466,6 +483,7 @@
 				928E0ED7226CE766005E56B5 /* ListCell.swift in Sources */,
 				928E0ECF226CE6F2005E56B5 /* SearchResult.swift in Sources */,
 				928E0ECD226CE6CE005E56B5 /* Service.swift in Sources */,
+				9202DC6F227252B200EAEDB4 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

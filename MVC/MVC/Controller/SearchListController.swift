@@ -37,7 +37,6 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         fetchAristWithSearch(searchText)
     }
-   
     fileprivate func fetchAristWithSearch(_ text: String) {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { (_) in
@@ -58,7 +57,6 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
         enterSearchName.isHidden = results.count != 0
         return results.count
     }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let redView = UIView()
         redView.backgroundColor = .red
@@ -71,20 +69,17 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
             redView.frame = self.view.frame
         }, completion: (nil))
     }
-    
-    @objc func handleRemoveView(gesture: UITapGestureRecognizer) {
+    @objc func handleRemoveView(gesture: UITapGestureRecognizer){
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
              gesture.view?.removeFromSuperview()
         }, completion: (nil))
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ListCell
         let result = results[indexPath.row]
         cell.result = result
         return cell
     }
-    
     fileprivate func verifyResultsInCell() {
         if results.isEmpty {
             self.tableView.separatorStyle = .none
@@ -93,8 +88,4 @@ class SearchListController: UITableViewController, UISearchBarDelegate {
             enterSearchName.isHidden = true
         }
     }
-    
-    
-    
-    
 }

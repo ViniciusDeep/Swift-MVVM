@@ -9,18 +9,15 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
     public var result: Result! {
         didSet {
             navigationItem.title = result.artistName
         }
     }
-    
     override func viewDidLoad() {
         setComponentsInView()
         //print(result?.artistName)
     }
-    
     fileprivate func setComponentsInView() {
         view.backgroundColor = .white
         let detailView = DetailView()
@@ -31,10 +28,6 @@ class DetailViewController: UIViewController {
         setConstraints(detailView)
         view.addSubview(detailView)
     }
-    
     fileprivate func setConstraints(_ view: DetailView) {
-        
-        
     }
-    
 }

@@ -10,14 +10,11 @@ import Foundation
 
 class Service {
     static let shared = Service()
-    
-    public func fetchArtist(searchTerm: String, completion: @escaping ([Result], Error?) -> () ) {
+    public func fetchArtist(searchTerm: String, completion: @escaping ([Result], Error?) -> () ){
         let urlString: String = "https://itunes.apple.com/search?term=\(searchTerm)"
         guard let url = URL(string: urlString) else {return}
-        
         let urlSession = URLSession.shared
-        
-        urlSession.dataTask(with: url) { (data, response, error) in
+        urlSession.dataTask(with: url) { (data, _, error) in
             guard let data = data else {return}
             if let error = error {
                 print("Failed", error)
@@ -30,11 +27,6 @@ class Service {
                 print("Fatal Error", jsonError)
                 completion([], jsonError)
             }
-            
-            
             }.resume()
-        
     }
-    
-    
 }

@@ -30,7 +30,6 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
@@ -43,5 +42,4 @@ class ListViewController: UITableViewController {
         cell.result = results[indexPath.row]
         return cell
     }
-    
 }

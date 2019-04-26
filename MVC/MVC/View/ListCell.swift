@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 
 class ListCell: UITableViewCell {
-    
     var result: Result! {
         didSet {
             nameLabel.text = result.trackName
@@ -47,6 +46,4 @@ class ListCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

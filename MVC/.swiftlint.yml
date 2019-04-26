@@ -1,0 +1,20 @@
+line_length: 
+ - 100 # warning
+
+force_cast:
+ severity: warning # explicitly
+
+strict_fileprivate:
+ severity: error # explicitly 
+
+closure_spacing:
+ severity: error # explicitly
+
+void_return: 
+ severity: warning # explicitly 
+
+static_operator: 
+ severity: warning # explicitly
+
+force_try: 
+ severity: error # explicitly
